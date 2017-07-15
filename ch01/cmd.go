@@ -19,7 +19,7 @@ func parseCmd() *Cmd {
 	flag.BoolVar(&cmd.helpFlag, "?", false, "print help message")
 	flag.BoolVar(&cmd.versionFlag, "version", false, "print version and exit")
 	flag.StringVar(&cmd.cpOption, "classpath", "", "classpath")
-	flag.StringVar(&cmd.cpOption, "classpath", "cp", "classpath")
+	flag.StringVar(&cmd.cpOption, "cp", "", "classpath")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) > 0 {
