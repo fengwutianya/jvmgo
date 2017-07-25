@@ -1,5 +1,6 @@
 package heap
 
+//access flags 16位每一位代表的含义，对应着Class应用中的许多isPublic()类似函数的实现
 const (
 	ACC_PUBLIC       = 0x0001 // class field method
 	ACC_PRIVATE      = 0x0002 //       field method

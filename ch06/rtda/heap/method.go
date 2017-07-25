@@ -3,7 +3,7 @@ package heap
 import "jvmgo/ch06/classfile"
 
 type Method struct {
-	ClassMember
+	ClassMember			//accessFlags, name, descriptor, *class
 	maxStack  uint
 	maxLocals uint
 	code      []byte
@@ -13,13 +13,20 @@ func newMethods(class *Class, cfMethods []*classfile.MemberInfo) []*Method {
 	methods := make([]*Method, len(cfMethods))
 	for i, cfMethod := range cfMethods {
 		methods[i] = &Method{}
-		methods[i].class = class
-		methods[i].copyMemberInfo(cfMethod)
-		methods[i].copyAttributes(cfMethod)
+		methods[i].class = class				//*class
+		methods[i].copyMemberInfo(cfMethod)		//accessflags, name, descriptor
+		methods[i].copyAttributes(cfMethod)		//maxstack, maxlocals, []code
 	}
 	return methods
 }
 
+//func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo) {
+//	if codeAttr := cfMethod.CodeAttribute(); codeAttr != nil {
+//		self.maxStack = codeAttr.MaxStack()
+//		self.maxLocals = codeAttr.MaxLocals()
+//		self.code = codeAttr.Code()
+//	}
+//}
 func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo) {
 	if codeAttr := cfMethod.CodeAttribute(); codeAttr != nil {
 		self.maxStack = codeAttr.MaxStack()

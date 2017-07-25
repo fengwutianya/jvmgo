@@ -1,8 +1,12 @@
 package heap
 
+//type Object struct {
+//	class  *Class
+//	fields Slots
+//}
 type Object struct {
-	class  *Class
-	fields Slots
+	class 	*Class		//该对象所属类在方法区对应的Class引用
+	fields	Slots		//所有的实例变量存储
 }
 
 func newObject(class *Class) *Object {

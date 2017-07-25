@@ -2,6 +2,7 @@ package heap
 
 import "math"
 
+//可以存储一个byte short char int reference的slot
 type Slot struct {
 	num int32
 	ref *Object

@@ -4,6 +4,7 @@ import "jvmgo/ch06/instructions/base"
 import "jvmgo/ch06/rtda"
 import "jvmgo/ch06/rtda/heap"
 
+//get
 // Fetch field from object
 type GET_FIELD struct{ base.Index16Instruction }
 

@@ -4,6 +4,7 @@ import "jvmgo/ch06/instructions/base"
 import "jvmgo/ch06/rtda"
 import "jvmgo/ch06/rtda/heap"
 
+//get
 // Get static field from class
 type GET_STATIC struct{ base.Index16Instruction }
 

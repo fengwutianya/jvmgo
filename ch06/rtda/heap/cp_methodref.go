@@ -4,7 +4,7 @@ import "jvmgo/ch06/classfile"
 
 type MethodRef struct {
 	MemberRef
-	method *Method
+	method *Method		//缓存引用
 }
 
 func newMethodRef(cp *ConstantPool, refInfo *classfile.ConstantMethodrefInfo) *MethodRef {

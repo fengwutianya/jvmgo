@@ -4,7 +4,7 @@ import "jvmgo/ch06/classfile"
 
 type InterfaceMethodRef struct {
 	MemberRef
-	method *Method
+	method *Method		//和普通methodref没看出区别来啊
 }
 
 func newInterfaceMethodRef(cp *ConstantPool, refInfo *classfile.ConstantInterfaceMethodrefInfo) *InterfaceMethodRef {

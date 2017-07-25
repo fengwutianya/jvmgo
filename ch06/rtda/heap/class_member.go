@@ -3,10 +3,10 @@ package heap
 import "jvmgo/ch06/classfile"
 
 type ClassMember struct {
-	accessFlags uint16
-	name        string
-	descriptor  string
-	class       *Class
+	accessFlags uint16	//字段或方法的访问标志
+	name        string	//字段或方法的名字
+	descriptor  string	//字段或方法的描述符
+	class       *Class	//字段或方法所属的class，可以沿着这个引用来找到classLoader
 }
 
 func (self *ClassMember) copyMemberInfo(memberInfo *classfile.MemberInfo) {

@@ -2,9 +2,19 @@ package heap
 
 import "jvmgo/ch06/classfile"
 
+/*fieldref
+	memberref
+		symref
+			constantpool*
+			classname
+			class*
+		name
+		descriptor
+	field*
+*/
 type FieldRef struct {
 	MemberRef
-	field *Field
+	field *Field	//缓存解析后的字段指针，第一次用解析，后面直接用
 }
 
 func newFieldRef(cp *ConstantPool, refInfo *classfile.ConstantFieldrefInfo) *FieldRef {
