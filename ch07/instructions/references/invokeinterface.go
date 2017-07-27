@@ -25,11 +25,12 @@ func (self *INVOKE_INTERFACE) Execute(frame *rtda.Frame) {
 		panic("java.lang.IncompatibleClassChangeError")
 	}
 
+	//可以看出 推到栈里的this引用 是子类变量的引用，resolvedClass引用是父类引用
 	ref := frame.OperandStack().GetRefFromTop(resolvedMethod.ArgSlotCount() - 1)
 	if ref == nil {
 		panic("java.lang.NullPointerException") // todo
 	}
-	if !ref.Class().IsImplements(methodRef.ResolvedClass()) {
+	if !ref.Class().IsImplements(methodRef.ResolvedClass()) {//父类引用指向子类对象
 		panic("java.lang.IncompatibleClassChangeError")
 	}
 

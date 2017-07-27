@@ -18,7 +18,7 @@ type Class struct {
 	instanceSlotCount uint
 	staticSlotCount   uint
 	staticVars        Slots
-	initStarted       bool
+	initStarted       bool	//类的初始化<clinit>() 是否执行了 static变量的赋值， static{}的运行
 }
 
 func newClass(cf *classfile.ClassFile) *Class {

@@ -2,6 +2,7 @@ package heap
 
 import "jvmgo/ch07/classfile"
 
+//解析接口方法引用，其实和解析非接口方法引用要简单，递归的解析超接口的方法即可
 type InterfaceMethodRef struct {
 	MemberRef
 	method *Method

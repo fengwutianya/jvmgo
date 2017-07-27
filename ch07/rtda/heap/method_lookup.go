@@ -19,7 +19,7 @@ func lookupMethodInInterfaces(ifaces []*Class, name, descriptor string) *Method 
 			}
 		}
 
-		method := lookupMethodInInterfaces(iface.interfaces, name, descriptor)
+		method := lookupMethodInInterfaces(iface.interfaces, name, descriptor)	//递归超接口
 		if method != nil {
 			return method
 		}

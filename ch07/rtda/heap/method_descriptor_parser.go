@@ -17,9 +17,9 @@ func (self *MethodDescriptorParser) parse(descriptor string) *MethodDescriptor {
 	self.raw = descriptor
 	self.parsed = &MethodDescriptor{}
 	self.startParams()
-	self.parseParamTypes()
+	self.parseParamTypes()	//函数参数类型
 	self.endParams()
-	self.parseReturnType()
+	self.parseReturnType()	//函数返回值
 	self.finish()
 	return self.parsed
 }

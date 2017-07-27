@@ -23,8 +23,8 @@ func (self *MethodRef) ResolvedMethod() *Method {
 
 // jvms8 5.4.3.3
 func (self *MethodRef) resolveMethodRef() {
-	d := self.cp.class
-	c := self.ResolvedClass()
+	d := self.cp.class			//本指令所在类
+	c := self.ResolvedClass()	//要加载的方法引用所在的类
 	if c.IsInterface() {
 		panic("java.lang.IncompatibleClassChangeError")
 	}

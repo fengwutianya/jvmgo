@@ -20,6 +20,7 @@ func (self *INVOKE_VIRTUAL) Execute(frame *rtda.Frame) {
 	ref := frame.OperandStack().GetRefFromTop(resolvedMethod.ArgSlotCount() - 1)
 	if ref == nil {
 		// hack!
+		//hack 是因为native方法调用，没有字节码
 		if methodRef.Name() == "println" {
 			_println(frame.OperandStack(), methodRef.Descriptor())
 			return
@@ -28,6 +29,7 @@ func (self *INVOKE_VIRTUAL) Execute(frame *rtda.Frame) {
 		panic("java.lang.NullPointerException")
 	}
 
+	//ref 从栈里面拿出来，是子类变量的 resovledClass 父类引用
 	if resolvedMethod.IsProtected() &&
 		resolvedMethod.Class().IsSuperClassOf(currentClass) &&
 		resolvedMethod.Class().GetPackageName() != currentClass.GetPackageName() &&

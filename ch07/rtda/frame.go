@@ -7,8 +7,8 @@ type Frame struct {
 	lower        *Frame // stack is implemented as linked list
 	localVars    LocalVars
 	operandStack *OperandStack
-	thread       *Thread
-	method       *heap.Method
+	thread       *Thread	//frame所属的线程
+	method       *heap.Method	//此栈帧要执行的函数
 	nextPC       int // the next instruction after the call
 }
 

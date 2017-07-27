@@ -7,7 +7,7 @@ type Method struct {
 	maxStack     uint
 	maxLocals    uint
 	code         []byte
-	argSlotCount uint
+	argSlotCount uint	//传递参数时要用到的，表实所有参数所占用的slot个数
 }
 
 func newMethods(class *Class, cfMethods []*classfile.MemberInfo) []*Method {

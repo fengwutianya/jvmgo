@@ -13,6 +13,7 @@ func (self *PUT_STATIC) Execute(frame *rtda.Frame) {
 	cp := currentClass.ConstantPool()
 	fieldRef := cp.GetConstant(self.Index).(*heap.FieldRef)
 	field := fieldRef.ResolvedField()
+	//putstatic 先检测类是否已经调用<clinit>()V，否则初始化
 	class := field.Class()
 	if !class.InitStarted() {
 		frame.RevertNextPC()

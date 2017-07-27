@@ -25,8 +25,8 @@ func catchErr(thread *rtda.Thread) {
 func loop(thread *rtda.Thread, logInst bool) {
 	reader := &base.BytecodeReader{}
 	for {
-		frame := thread.CurrentFrame()
-		pc := frame.NextPC()
+		frame := thread.CurrentFrame()	//top frame
+		pc := frame.NextPC()			//pc
 		thread.SetPC(pc)
 
 		// decode

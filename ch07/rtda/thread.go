@@ -19,7 +19,7 @@ type Thread struct {
 
 func NewThread() *Thread {
 	return &Thread{
-		stack: newStack(1024),
+		stack: newStack(1024),		//新线程，意味着pc为0，stack为空
 	}
 }
 
