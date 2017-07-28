@@ -47,11 +47,11 @@ func (self *ClassLoader) loadArrayClass(name string) *Class {
 		initStarted: true,
 		superClass:  self.LoadClass("java/lang/Object"),
 		interfaces: []*Class{
-			self.LoadClass("java/lang/Cloneable"),
+			self.LoadClass("java/lang/Cloneable"),	//数组实现了Cloneable接口和Serializable接口
 			self.LoadClass("java/io/Serializable"),
 		},
 	}
-	self.classMap[name] = class
+	self.classMap[name] = class	//方法区记录下已经加载了那个类，是哪个加载器加载的
 	return class
 }
 

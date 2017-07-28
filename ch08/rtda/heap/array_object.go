@@ -1,6 +1,10 @@
 package heap
 
-func (self *Object) Bytes() []int8 {
+//8类数组访问指令<t>aload <t>astore
+//func (self *Object) Bytes() []int8 {
+//	return self.data.([]int8)
+//}
+func (self *Object) Bytes() []int8 {	//baload bastore
 	return self.data.([]int8)
 }
 func (self *Object) Shorts() []int16 {
@@ -26,6 +30,9 @@ func (self *Object) Refs() []*Object {
 }
 
 func (self *Object) ArrayLength() int32 {
+	//switch self.data.(type) {
+	//case []int8:
+	//	return int32(len(self.data.([]int8)))
 	switch self.data.(type) {
 	case []int8:
 		return int32(len(self.data.([]int8)))

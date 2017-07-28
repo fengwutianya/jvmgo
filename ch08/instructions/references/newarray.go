@@ -5,6 +5,7 @@ import "jvmgo/ch08/rtda"
 import "jvmgo/ch08/rtda/heap"
 
 const (
+	//数组内部元素的类型 基本元素8中 boolean byte short char int float long double
 	//Array Type  atype
 	AT_BOOLEAN = 4
 	AT_CHAR    = 5
@@ -17,6 +18,10 @@ const (
 )
 
 // Create new array
+//两个操作数 一个在字节码里 直接在后面找到的byte型表述数组元素类型 另外一个是操作数栈里面弹出，表示数组长度
+//type NEW_ARRAY struct {
+//	atype uint8
+//}
 type NEW_ARRAY struct {
 	atype uint8
 }
@@ -24,18 +29,34 @@ type NEW_ARRAY struct {
 func (self *NEW_ARRAY) FetchOperands(reader *base.BytecodeReader) {
 	self.atype = reader.ReadUint8()
 }
+
 func (self *NEW_ARRAY) Execute(frame *rtda.Frame) {
+	//数组长度 在操作数栈中
 	stack := frame.OperandStack()
 	count := stack.PopInt()
 	if count < 0 {
 		panic("java.lang.NegativeArraySizeException")
 	}
-
 	classLoader := frame.Method().Class().Loader()
-	arrClass := getPrimitiveArrayClass(classLoader, self.atype)
+	arrClass := getPrimitiveArrayClass(classLoader, self.atype)	//newarray只能产生基本类型的数组
 	arr := arrClass.NewArray(uint(count))
 	stack.PushRef(arr)
 }
+//func (self *NEW_ARRAY) FetchOperands(reader *base.BytecodeReader) {
+//	self.atype = reader.ReadUint8()
+//}
+//func (self *NEW_ARRAY) Execute(frame *rtda.Frame) {
+//	stack := frame.OperandStack()
+//	count := stack.PopInt()
+//	if count < 0 {
+//		panic("java.lang.NegativeArraySizeException")
+//	}
+//
+//	classLoader := frame.Method().Class().Loader()
+//	arrClass := getPrimitiveArrayClass(classLoader, self.atype)
+//	arr := arrClass.NewArray(uint(count))
+//	stack.PushRef(arr)
+//}
 
 func getPrimitiveArrayClass(loader *heap.ClassLoader, atype uint8) *heap.Class {
 	switch atype {

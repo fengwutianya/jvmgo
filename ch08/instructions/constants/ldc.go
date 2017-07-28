@@ -22,6 +22,7 @@ func _ldc(frame *rtda.Frame, index uint) {
 	stack := frame.OperandStack()
 	class := frame.Method().Class()
 	c := class.ConstantPool().GetConstant(index)
+	//c是getConstant()得到的，是一个interface{}，可以存储任何值，值的类型通过c.(type)得到，可以通过c.(float32)进行类型转换
 
 	switch c.(type) {
 	case int32:

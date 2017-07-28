@@ -22,6 +22,13 @@ func getArrayClassName(className string) string {
 // [[XXX -> [XXX
 // [LXXX; -> XXX
 // [I -> int
+//func getComponentClassName(className string) string {
+//	if className[0] == '[' {
+//		componentTypeDescriptor := className[1:]
+//		return toClassName(componentTypeDescriptor)
+//	}
+//	panic("Not array: " + className)
+//}
 func getComponentClassName(className string) string {
 	if className[0] == '[' {
 		componentTypeDescriptor := className[1:]
@@ -58,7 +65,7 @@ func toClassName(descriptor string) string {
 		// object
 		return descriptor[1 : len(descriptor)-1]
 	}
-	for className, d := range primitiveTypes {
+	for className, d := range primitiveTypes {	//用的是map
 		if d == descriptor {
 			// primitive
 			return className

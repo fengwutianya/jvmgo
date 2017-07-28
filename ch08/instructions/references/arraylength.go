@@ -7,7 +7,7 @@ import "jvmgo/ch08/rtda"
 type ARRAY_LENGTH struct{ base.NoOperandsInstruction }
 
 func (self *ARRAY_LENGTH) Execute(frame *rtda.Frame) {
-	stack := frame.OperandStack()
+	stack := frame.OperandStack()	//操作数栈栈顶存放的是需要的操作数
 	arrRef := stack.PopRef()
 	if arrRef == nil {
 		panic("java.lang.NullPointerException")
