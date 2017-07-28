@@ -2,6 +2,8 @@ package heap
 
 type Object struct {
 	class *Class
+	//原来是slots []Slot运来存放对象的各个实例变量值，现在改成interface{}也就是void*类型
+	//可以存放任何变量，对于普通类，存放[]Slot，对于数组类，存放各种数组[]int8 []int16 []int32 []int64 []float32 []float64 []*Object []uint16
 	data  interface{} // Slots for Object, []int32 for int[] ...
 }
 
