@@ -17,7 +17,7 @@ func InvokeMethod(invokerFrame *rtda.Frame, method *heap.Method) {
 		}
 	}
 
-	// hack!
+	// hack!	native也用字节码和jvm栈来实现了 所以不用pop frame了
 	if method.IsNative() {
 		if method.Name() == "registerNatives" {
 			thread.PopFrame()

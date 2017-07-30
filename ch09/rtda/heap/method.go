@@ -7,7 +7,7 @@ type Method struct {
 	maxStack     uint
 	maxLocals    uint
 	code         []byte
-	argSlotCount uint
+	argSlotCount uint	//局部变量所占slot数目
 }
 
 func newMethods(class *Class, cfMethods []*classfile.MemberInfo) []*Method {
@@ -51,11 +51,13 @@ func (self *Method) calcArgSlotCount(paramTypes []string) {
 	}
 }
 
+//Native方法要injectCodeAttribute没有字节码code
 func (self *Method) injectCodeAttribute(returnType string) {
 	self.maxStack = 4 // todo
 	self.maxLocals = self.argSlotCount
 	switch returnType[0] {
 	case 'V':
+		//0Xfe使用保留指令来标识native方法，后面一个标识返回值，没有字节码就没有指令后面的操作数，函数形参都在栈里
 		self.code = []byte{0xfe, 0xb1} // return
 	case 'L', '[':
 		self.code = []byte{0xfe, 0xb0} // areturn

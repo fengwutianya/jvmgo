@@ -19,7 +19,10 @@ type Class struct {
 	staticSlotCount   uint
 	staticVars        Slots
 	initStarted       bool
-	jClass            *Object
+	//jClass            *Object
+	jClass 			  *Object 	//java.lang.Class的对象 每个加载的类都有这样一个对象，每个这样的对象 都肯定对应着一个类
+								//这就不用说了，所有对象都有*Class对应着自己所属的这个类
+								//我错了 如果按照上面那样 就分不出来普通对象和Class对象了，所以有extra变量
 }
 
 func newClass(cf *classfile.ClassFile) *Class {

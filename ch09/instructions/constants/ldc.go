@@ -33,7 +33,7 @@ func _ldc(frame *rtda.Frame, index uint) {
 		stack.PushRef(internedStr)
 	case *heap.ClassRef:
 		classRef := c.(*heap.ClassRef)
-		classObj := classRef.ResolvedClass().JClass()
+		classObj := classRef.ResolvedClass().JClass()	//Class对应的Object
 		stack.PushRef(classObj)
 	// case MethodType, MethodHandle
 	default:

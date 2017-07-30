@@ -22,6 +22,7 @@ ClassFile {
     attribute_info attributes[attributes_count];
 }
 */
+// ClassFile里面存的是class文件里面的内容，从classreader里面读取分门别类放在ClassFile结构里
 type ClassFile struct {
 	//magic      uint32
 	minorVersion uint16

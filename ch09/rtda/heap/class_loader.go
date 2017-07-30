@@ -24,6 +24,7 @@ func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader {
 		classMap:    make(map[string]*Class),
 	}
 
+	//全篇就这么一个ClassLoader，责任重大呀，也把该加载的类都加载了
 	loader.loadBasicClasses()
 	loader.loadPrimitiveClasses()
 	return loader
@@ -31,8 +32,8 @@ func NewClassLoader(cp *classpath.Classpath, verboseFlag bool) *ClassLoader {
 
 func (self *ClassLoader) loadBasicClasses() {
 	jlClassClass := self.LoadClass("java/lang/Class")
-	for _, class := range self.classMap {
-		if class.jClass == nil {
+	for _, class := range self.classMap {			//意思是遍历自己加载的类，如果还没有给这个类分配Class对象，
+		if class.jClass == nil {					//则给他们分配Class对象，Class对象的extra指向自己
 			class.jClass = jlClassClass.NewObject()
 			class.jClass.extra = class
 		}

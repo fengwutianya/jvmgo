@@ -3,7 +3,7 @@ package heap
 type Object struct {
 	class *Class
 	data  interface{} // Slots for Object, []int32 for int[] ...
-	extra interface{}
+	extra interface{}	//todo do 只有此object是java.lang.Class的对象时，extra值得才是位于方法区的Class结构体
 }
 
 // create normal (non-array) object
