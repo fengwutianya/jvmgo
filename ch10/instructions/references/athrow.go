@@ -79,7 +79,7 @@ func handleUncaughtException(thread *rtda.Thread, ex *heap.Object) {
 	goMsg := heap.GoString(jMsg)
 	println(ex.Class().JavaName() + ": " + goMsg)
 
-	stes := reflect.ValueOf(ex.Extra())
+	stes := reflect.ValueOf(ex.Extra())	//异常信息是挂在ex的extra上面了
 	for i := 0; i < stes.Len(); i++ {
 		ste := stes.Index(i).Interface().(interface {
 			String() string

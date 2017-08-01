@@ -52,8 +52,8 @@ func handleUncaughtException(thread *rtda.Thread, ex *heap.Object) {
 
 	stes := reflect.ValueOf(ex.Extra())
 	for i := 0; i < stes.Len(); i++ {
-		ste := stes.Index(i).Interface().(interface {
-			String() string
+		ste := stes.Index(i).Interface().(interface {	//反射用在这里，转化撤一个有String()方法的interface{}
+			String() string								//接下来调用String()方法就可以了
 		})
 		println("\tat " + ste.String())
 	}

@@ -30,7 +30,7 @@ func fillInStackTrace(frame *rtda.Frame) {
 	frame.OperandStack().PushRef(this)
 
 	stes := createStackTraceElements(this, frame.Thread())
-	this.SetExtra(stes)
+	this.SetExtra(stes)		//extra存放异常信息 对于exception类
 }
 
 func createStackTraceElements(tObj *heap.Object, thread *rtda.Thread) []*StackTraceElement {
