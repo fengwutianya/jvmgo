@@ -110,11 +110,19 @@ func (self *Method) ArgSlotCount() uint {
 
 func (self *Method) FindExceptionHandler(exClass *Class, pc int) int {
 	handler := self.exceptionTable.findExceptionHandler(exClass, pc)
-	if handler != nil {
+	if handler != nil {				//找到了exceptionHandler
 		return handler.handlerPc
 	}
 	return -1
 }
+
+//func (self *Method) FindExceptionHandler(exClass *Class, pc int) int {
+//	handler := self.exceptionTable.findExceptionHandler(exClass, pc)
+//	if handler != nil {
+//		return handler.handlerPc
+//	}
+//	return -1
+//}
 
 func (self *Method) GetLineNumber(pc int) int {
 	if self.IsNative() {
